@@ -5,10 +5,9 @@ import { ref, shallowRef } from '@vue/reactivity'
 export default function createFetch(http: AxiosInstance) {
   function useFetch<
     T extends ApiTypeMap[P],
-    P extends keyof ApiTypeMap,
+    P extends keyof ApiTypeMap
   >(url: P, options: Partial<ExtraOptions<T, P>> = {}): UseFetchReturn<T['response']> {
-
-    const { method, path } = patchURL<T, P>(url, options.params)
+    const { method, path } = patchURL(url as string, options.params)
     options = { immediate: true, method, url: path, ...options }
 
     const data = shallowRef<T['response'] | null>(options.default ?? null)
@@ -35,14 +34,14 @@ export default function createFetch(http: AxiosInstance) {
 
   async function useIFetch<
     T extends ApiTypeMap[P],
-    P extends keyof ApiTypeMap,
+    P extends keyof ApiTypeMap
   >(url: P, options: Partial<ExtraOptions<T, P>> = {}): Promise<UseIFetchReturn<T['response']>> {
 
-    const { method, path } = patchURL<T, P>(url, options.params)
+    const { method, path } = patchURL(url as string, options.params)
     options = { immediate: true, method, url: path, ...options }
 
-    let data: T['response'] | null = options.default ?? null
-    let error: ErrorReturn | null = null
+    const data = shallowRef<T['response'] | null>(options.default ?? null)
+    const error = shallowRef<ErrorReturn | null>(null)
 
     options.immediate && await reload()
     async function reload() {
@@ -54,10 +53,10 @@ export default function createFetch(http: AxiosInstance) {
           data: options.body,
         })
 
-        data = response.data
+        data.value = response.data
       }
       catch (e: any) {
-        error = e
+        error.value = e
       }
     }
 

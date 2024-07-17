@@ -1,4 +1,5 @@
-import { Ref } from "@vue/reactivity"
+import type { Ref, ShallowRef } from "@vue/reactivity"
+import { AxiosInstance } from "axios"
 
 export interface ApiTypeMap {}
 
@@ -47,14 +48,14 @@ export interface ErrorReturn {
 }
 
 export interface UseFetchReturn<T> {
-  data: Ref<T | null>
-  error: Ref<ErrorReturn | null>
+  data: ShallowRef<T | null>
+  error: ShallowRef<ErrorReturn | null>
   isloading: Ref<boolean>
   reload: () => void
 }
 
 export interface UseIFetchReturn<T> {
-  data: T | null
-  error: ErrorReturn | null
+  data: ShallowRef<T | null>
+  error: ShallowRef<ErrorReturn | null>
   reload: () => Promise<void>
 }
