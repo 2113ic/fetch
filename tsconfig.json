@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "target": "ES2018",
+    "moduleResolution": "Bundler",
+    "declaration": true,
+  },
+  "include": ["src/index.ts"],
+}
