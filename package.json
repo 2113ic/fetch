@@ -9,7 +9,7 @@
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
-    "./*": "./*"
+    "./*": "./dist/*"
   },
   "files": ["dist"],
   "keywords": [
