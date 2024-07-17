@@ -3,15 +3,15 @@
   "version": "0.1.1",
   "type": "module",
   "description": "Axios secondary encapsulation solves the problems of interface management and type annotation",
-  "types": "./index.d.ts",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.js",
-      "types": "./index.d.ts"
+      "types": "./dist/index.d.ts"
     },
     "./*": "./*"
   },
-  "files": ["dist", "index.d.ts"],
+  "files": ["dist"],
   "keywords": [
     "useFetch",
     "vue",
