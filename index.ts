@@ -1,4 +1,4 @@
-import type { ApiTypeMap, ExtraOptions, URLMatchGroup, ErrorReturn, UseFetchReturn, UseIFetchReturn } from './type'
+import type { ApiTypeMap, ExtraOptions, URLMatchGroup, ErrorReturn, UseFetchReturn, UseIFetchReturn } from './fetch'
 import type { AxiosInstance } from 'axios'
 import { ref, shallowRef } from '@vue/reactivity'
 

@@ -2,6 +2,7 @@ import type { Ref, ShallowRef } from "@vue/reactivity"
 import { AxiosInstance } from "axios"
 
 export interface ApiTypeMap {}
+export interface ErrorReturn {}
 
 export interface URLMatchGroup {
   method: 'GET' | 'POST' | 'PUT' | 'DELETE'
@@ -41,12 +42,6 @@ export interface ExtraOptions<T extends ApiTypeMap[P], P extends keyof ApiTypeMa
   default: T['response']
 }
 
-export interface ErrorReturn {
-  code: number
-  message: string
-  data: null
-}
-
 export interface UseFetchReturn<T> {
   data: ShallowRef<T | null>
   error: ShallowRef<ErrorReturn | null>
@@ -58,4 +53,9 @@ export interface UseIFetchReturn<T> {
   data: ShallowRef<T | null>
   error: ShallowRef<ErrorReturn | null>
   reload: () => Promise<void>
+}
+
+export default function createFetch(http: AxiosInstance): {
+  useFetch<T extends ApiTypeMap[P], P extends keyof ApiTypeMap>(url: P, options?: Partial<ExtraOptions<T, P>>): UseFetchReturn<T['response']>
+  useIFetch<T extends ApiTypeMap[P], P extends keyof ApiTypeMap>(url: P, options?: Partial<ExtraOptions<T, P>>): Promise<UseIFetchReturn<T['response']>>
 }

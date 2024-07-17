@@ -1,17 +1,17 @@
 {
   "name": "@icxy/fetch",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "Axios secondary encapsulation solves the problems of interface management and type annotation",
-  "types": "./dist/index.d.ts",
+  "types": "./index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "types": "./index.d.ts"
     },
-    "./*": "./dist/*"
+    "./*": "./*"
   },
-  "files": ["dist"],
+  "files": ["dist", "index.d.ts"],
   "keywords": [
     "useFetch",
     "vue",
@@ -34,7 +34,6 @@
   },
   "devDependencies": {
     "axios": "^1.7.2",
-    "vite": "^5.3.4",
-    "vite-plugin-dts": "^3.9.1"
+    "vite": "^5.3.4"
   }
 }
